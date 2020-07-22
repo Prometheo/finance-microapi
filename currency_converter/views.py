@@ -4,11 +4,19 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from .serializers import RequestConverterSerializer
+from drf_yasg.utils import swagger_auto_schema
+from finance_microapi.settings import CURR_API
+
+RESPONSES = {
+    '200': 'currency converted successfully.',
+    '400': 'Incorrect request format.',
+    '500': 'An error occurred, could convert.' 
+}
 
 # Create your views here.
 def Converter_func(from_currency, to_currency, amount):
     cur_param = from_currency + '_' + to_currency
-    query_param = {'q':cur_param, 'compact':'ultra', 'apiKey':'2e47d7476d82856c53e9'}
+    query_param = {'q':cur_param, 'compact':'ultra', 'apiKey':CURR_API} 
     _url = 'https://free.currconv.com/api/v7/convert'
     try:
         api_call = requests.request('get', _url, params=query_param)
@@ -31,6 +39,15 @@ def Converter_func(from_currency, to_currency, amount):
 
 
 class ConvertCurrency(APIView):
+
+    @swagger_auto_schema(
+        request_body=RequestConverterSerializer,
+        operation_summary="Convert currency",
+        operation_description="",
+        responses=RESPONSES,
+        tags=['Convert']
+    )
+
     def post(self, request):
         fixer_url = 'https://data.fixer.io/api/convert'
         serializer = RequestConverterSerializer(data=request.data)
