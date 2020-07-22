@@ -49,7 +49,6 @@ class ConvertCurrency(APIView):
     )
 
     def post(self, request):
-        fixer_url = 'https://data.fixer.io/api/convert'
         serializer = RequestConverterSerializer(data=request.data)
         if serializer.is_valid():
             validated_data = serializer.validated_data
@@ -63,3 +62,23 @@ class ConvertCurrency(APIView):
                 'status': 'failed',
                 'data': { 'message': 'Incorrect request format.', 'errors': serializer.errors}
             }, status=status.HTTP_400_BAD_REQUEST)
+
+class ListCurrencies(APIView):
+
+    @swagger_auto_schema(
+        operation_summary="List all available currency",
+        operation_description="",
+        responses=RESPONSES,
+        tags=['Currencies']
+    )
+
+    def get(self, request):
+        url = 'https://free.currconv.com/api/v7/currencies'
+        query_params = {'apiKey':CURR_API} 
+        response =  requests.request('get', url, params=query_params)
+        currencies = response.json()
+        
+        return Response({
+            'status': 'Success',
+            'data': currencies
+        })
