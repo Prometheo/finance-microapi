@@ -77,8 +77,8 @@ class ListCurrencies(APIView):
         query_params = {'apiKey':CURR_API} 
         response =  requests.request('get', url, params=query_params)
         currencies = response.json()
-
+        
         return Response({
-            'status': 'success',
+            'status': 'Success',
             'data': currencies
         })
