@@ -164,3 +164,10 @@ prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
 
 CURR_API = os.getenv('CURR_CONVERT_API')
+
+# Celery settings
+# CELERY_BROKER_URL = 'amqp://admin:mypass@broker:5672'
+CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_RESULT_BACKEND = 'db+sqlite:///results.sqlite'
+CELERY_TASK_SERIALIZER = 'json'

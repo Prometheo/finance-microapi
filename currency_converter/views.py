@@ -53,7 +53,6 @@ class ConvertCurrency(views.APIView):
     )
 
     def post(self, request):
-        fixer_url = 'https://data.fixer.io/api/convert'
         serializer = RequestConverterSerializer(data=request.data)
         if serializer.is_valid():
             validated_data = serializer.validated_data
