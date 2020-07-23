@@ -2,10 +2,13 @@ from django.shortcuts import render
 import requests
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.views import APIView
+from rest_framework import views, generics
 from .serializers import RequestConverterSerializer
 from drf_yasg.utils import swagger_auto_schema
 from finance_microapi.settings import CURR_API
+from .models import Currency
+from .serializers import CurrencyListSerializer
+from datetime import date
 
 RESPONSES = {
     '200': 'currency converted successfully.',
@@ -26,7 +29,8 @@ def Converter_func(from_currency, to_currency, amount):
         data = {
             'status':'Success',
             'info':{
-                'rate':base_conversion
+                'rate':base_conversion,
+                'date':date.today()
             },
             'result':final_conversion
         }
@@ -38,7 +42,7 @@ def Converter_func(from_currency, to_currency, amount):
         return error_data
 
 
-class ConvertCurrency(APIView):
+class ConvertCurrency(views.APIView):
 
     @swagger_auto_schema(
         request_body=RequestConverterSerializer,
@@ -63,3 +67,7 @@ class ConvertCurrency(APIView):
                 'status': 'failed',
                 'data': { 'message': 'Incorrect request format.', 'errors': serializer.errors}
             }, status=status.HTTP_400_BAD_REQUEST)
+
+class ListCurrencies(generics.ListAPIView):
+    queryset = Currency.objects.all()
+    serializer_class = CurrencyListSerializer
