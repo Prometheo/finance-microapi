@@ -105,6 +105,18 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'OPTIONS': {'charset': 'utf8mb4'},
+#         'NAME': 'financedb',
+#         'USER': 'financedb',
+#         'PASSWORD': 'django_app123',
+#         'HOST': 'db',
+#         'PORT': 3307,
+#     }
+# }
+
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
         'api_key': {
