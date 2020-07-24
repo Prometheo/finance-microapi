@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 from django.utils.crypto import get_random_string
 
+
 class Command(BaseCommand):
 
     help = 'Create super user'
@@ -18,8 +19,14 @@ class Command(BaseCommand):
         admin = kwargs['admin']
 
         for i in range(total):
-            username = 'user'
+            username = 'myuser'
             if admin:
-                User.objects.create_superuser(username=username, email='', password='user')
+                User.objects.create_superuser(username=username, email='', password='myuser')
             else:
-                User.objects.create_user(username=username, email='', password='user')
+                User.objects.create_user(username=username, email='', password='myuser')
+
+
+            
+
+
+    

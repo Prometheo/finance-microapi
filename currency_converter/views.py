@@ -3,6 +3,7 @@ import requests
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import views, generics
+from rest_framework.views import APIView
 from .serializers import RequestConverterSerializer
 from drf_yasg.utils import swagger_auto_schema
 from finance_microapi.settings import CURR_API
@@ -67,6 +68,16 @@ class ConvertCurrency(views.APIView):
                 'data': { 'message': 'Incorrect request format.', 'errors': serializer.errors}
             }, status=status.HTTP_400_BAD_REQUEST)
 
-class ListCurrencies(generics.ListAPIView):
-    queryset = Currency.objects.all()
-    serializer_class = CurrencyListSerializer
+
+class ListCurrencies(APIView):
+    @swagger_auto_schema(
+        operation_summary="Retrieve a list of all currencies",
+        operation_description="",
+        responses=RESPONSES,
+        tags=['List Currencies']
+    )
+
+    def get(self, request, format=None):
+        queryset = Currency.objects.all()
+        serializer = CurrencyListSerializer(queryset, many=True)
+        return Response(serializer.data)
