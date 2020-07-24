@@ -12,11 +12,10 @@ schema_view = get_schema_view(
       title="Currency Convert API",
       default_version='v1',
       description="An API that works as a currency converter",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="contact@snippets.local"),
       license=openapi.License(name="BSD License"),
    ),
    public=True,
+   # url='https://finance.microapi.dev/v1/',
    permission_classes=(permissions.AllowAny,),
 )
 

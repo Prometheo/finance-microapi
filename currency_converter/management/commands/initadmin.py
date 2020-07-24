@@ -19,11 +19,11 @@ class Command(BaseCommand):
         admin = kwargs['admin']
 
         for i in range(total):
-            username = 'user'
+            username = 'myuser'
             if admin:
-                User.objects.create_superuser(username=username, email='', password='user')
+                User.objects.create_superuser(username=username, email='', password='myuser')
             else:
-                User.objects.create_user(username=username, email='', password='user')
+                User.objects.create_user(username=username, email='', password='myuser')
 
 
             
