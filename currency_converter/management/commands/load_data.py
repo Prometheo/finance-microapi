@@ -12,4 +12,7 @@ class Command(BaseCommand):
         data = data.json()
         data = data['results']
         for entry in data:
-            Currency.objects.create(country_name=data[entry]['name'], currency_symbol=data[entry]['currencySymbol'], currency_name=data[entry]['currencyName'], currency_id=data[entry]['currencyId'])
+                Currency.objects.create(country_name=data[entry]['name'], 
+                                        currency_symbol=data[entry]['currencySymbol'], 
+                                        currency_name=data[entry]['currencyName'], 
+                                        currency_id=data[entry]['currencyId'])
