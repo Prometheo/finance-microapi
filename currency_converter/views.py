@@ -79,5 +79,5 @@ class ListCurrencies(APIView):
 
     def get(self, request, format=None):
         queryset = Currency.objects.all()
-        serializer = CurrencyListSerializer(queryset, many)
+        serializer = CurrencyListSerializer(queryset, many=True)
         return Response(serializer.data)
