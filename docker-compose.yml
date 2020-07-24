@@ -1,7 +1,8 @@
 version: '3.4'
 
-services: 
+services:
     financeapp:
+        restart: always
         build: .
         command: bash -c "python manage.py initadmin 1 --admin && python manage.py runserver 0.0.0.0:8000"
         volumes: 
