@@ -71,7 +71,7 @@ class ConvertCurrency(views.APIView):
 
 class ListCurrencies(APIView):
     @swagger_auto_schema(
-        operation_summary="Convert currency",
+        operation_summary="Retrieve a list of all currencies",
         operation_description="",
         responses=RESPONSES,
         tags=['List Currencies']
