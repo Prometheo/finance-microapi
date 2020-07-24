@@ -20,6 +20,7 @@ itypes==1.2.0
 Jinja2==2.11.2
 kombu==4.6.11
 MarkupSafe==1.1.1
+mysqlclient==2.0.1
 packaging==20.4
 pyparsing==2.4.7
 python-dotenv==0.14.0
