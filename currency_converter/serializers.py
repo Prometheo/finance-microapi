@@ -1,5 +1,5 @@
 from rest_framework import serializers
-# from .models import Currency
+from .models import Currency
 
 
 class RequestConverterSerializer(serializers.Serializer):
@@ -7,8 +7,8 @@ class RequestConverterSerializer(serializers.Serializer):
     to_currency = serializers.CharField(max_length=3)
     amount = serializers.IntegerField()
     
-# class CurrencyListSerializer(serializers.ModelSerializer):
+class CurrencyListSerializer(serializers.ModelSerializer):
 
-#     class Meta:
-#         model = Currency
-#         fields = '__all__'
+    class Meta:
+        model = Currency
+        fields = '__all__'
