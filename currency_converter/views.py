@@ -7,8 +7,8 @@ from rest_framework.views import APIView
 from .serializers import RequestConverterSerializer
 from drf_yasg.utils import swagger_auto_schema
 from finance_microapi.settings import CURR_API
-# from .models import Currency
-# from .serializers import CurrencyListSerializer
+from .models import Currency
+from .serializers import CurrencyListSerializer
 from datetime import date
 
 RESPONSES = {
@@ -77,18 +77,18 @@ class ListCurrencies(APIView):
         tags=['List Currencies']
     )
 
-    # def get(self, request, format=None):
-    #     queryset = Currency.objects.all()
-    #     serializer = CurrencyListSerializer(queryset, many=True)
-    #     return Response(serializer.data)
+    def get(self, request, format=None):
+        queryset = Currency.objects.all()
+        serializer = CurrencyListSerializer(queryset, many=True)
+        return Response(serializer.data)
 
-    def get(self, request):
-        url = 'https://free.currconv.com/api/v7/currencies'
-        query_params = {'apiKey':CURR_API} 
-        response =  requests.request('get', url, params=query_params)
-        currencies = response.json()
+    # def get(self, request):
+    #     url = 'https://free.currconv.com/api/v7/currencies'
+    #     query_params = {'apiKey':CURR_API} 
+    #     response =  requests.request('get', url, params=query_params)
+    #     currencies = response.json()
 
-        return Response({
-            'status': 'Success',
-            'data': currencies
-        })
+    #     return Response({
+    #         'status': 'Success',
+    #         'data': currencies
+    #     })

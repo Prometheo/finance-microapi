@@ -31,8 +31,8 @@ RUN mkdir -p /app/static
 
 #run migrations
 RUN python manage.py makemigrations && python manage.py migrate --noinput
-# RUN python manage.py initadmin 1 --admin
-# RUN python manage.py load_data
+RUN python manage.py initadmin 1 --admin
+RUN python manage.py load_data
 
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
