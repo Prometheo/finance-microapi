@@ -9,7 +9,7 @@ SwaggerUIRenderer.template = 'drf-yasg.html'
 
 API_TITLE = 'Finance API'
 API_DESCRIPTION = 'A Web API for list of available Locations'
-
+#re-push
 schema_view = get_schema_view(
    openapi.Info(
       title="Currency Convert API",
